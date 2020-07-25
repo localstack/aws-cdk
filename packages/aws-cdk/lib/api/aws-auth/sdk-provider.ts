@@ -41,6 +41,11 @@ export interface SdkProviderOptions {
    * HTTP options for SDK
    */
   readonly httpOptions?: SdkHttpOptions;
+
+  /**
+   * Initialise the AWS SDK with offline support.
+   */
+  readonly offline?: boolean;
 }
 
 /**
@@ -89,6 +94,12 @@ export class SdkProvider {
    */
   public static async withAwsCliCompatibleDefaults(options: SdkProviderOptions = {}) {
     const sdkOptions = parseHttpOptions(options.httpOptions ?? {});
+
+    if (options.offline) {
+      sdkOptions.endpoint = 'http://localhost:4566';
+      sdkOptions.s3ForcePathStyle = true;
+      debug('Using endpoint: %s', sdkOptions.endpoint);
+    }
 
     const chain = await AwsCliCompatible.credentialChain(options.profile, options.ec2creds, options.containerCreds, sdkOptions.httpOptions);
     const region = await AwsCliCompatible.region(options.profile);
