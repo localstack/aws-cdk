@@ -82,7 +82,7 @@ export class BootstrapStack {
       environment: cxapi.EnvironmentUtils.format(this.resolvedEnvironment.account, this.resolvedEnvironment.region),
       properties: {
         templateFile,
-        terminationProtection: options.terminationProtection ?? false,
+        terminationProtection: options.parameters?.offline ? undefined : (options.parameters?.terminationProtection ?? false),
       },
     });
 

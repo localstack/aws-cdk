@@ -83,15 +83,12 @@ describe('with default config files', () => {
         [default]
         aws_access_key_id=${uid}access
         aws_secret_access_key=secret
-
         [foo]
         aws_access_key_id=${uid}fooccess
         aws_secret_access_key=secret
-
         [assumer]
         aws_access_key_id=${uid}assumer
         aws_secret_access_key=secret
-
         [mfa]
         aws_access_key_id=${uid}mfaccess
         aws_secret_access_key=secret
@@ -99,25 +96,19 @@ describe('with default config files', () => {
       '/home/me/.bxt/config': dedent(`
         [default]
         region=eu-bla-5
-
         [profile foo]
         region=eu-west-1
-
         [profile boo]
         aws_access_key_id=${uid}booccess
         aws_secret_access_key=boocret
         # No region here
-
         [profile assumable]
         role_arn=arn:aws:iam::12356789012:role/Assumable
         source_profile=assumer
-
         [profile assumer]
         region=us-east-2
-
         [profile mfa]
         region=eu-west-1
-
         [profile mfa-role]
         source_profile=mfa
         role_arn=arn:aws:iam::account:role/role
@@ -334,7 +325,6 @@ test('can assume role without a [default] profile', async () => {
       [assumer]
       aws_access_key_id=${uid}assumer
       aws_secret_access_key=secret
-
       [assumable]
       role_arn=arn:aws:iam::12356789012:role/Assumable
       source_profile=assumer
@@ -472,6 +462,20 @@ test('can assume role with env credentials', async () => {
 
   });
 
+});
+
+describe('Offline', () => {
+  test('endpoint option should be set to localhost', async () => {
+    const provider = await SdkProvider.withAwsCliCompatibleDefaults({
+      ...defaultCredOptions,
+      offline: true,
+    });
+
+    const defaultAccount = await provider.defaultAccount();
+    expect(defaultAccount).toHaveProperty('accountId', '0000000000');
+    // @ts-ignore
+    expect(provider.sdkOptions).toHaveProperty('endpoint', 'http://localhost:4566');
+  });
 });
 
 test('assume fails with unsupported credential_source', async () => {

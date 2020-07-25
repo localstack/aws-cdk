@@ -254,6 +254,10 @@ When `cdk deploy` is executed, deployment events will include the complete histo
 ```
 The `progress` key can also be specified as a user setting (`~/.cdk.json`)
 
+#### Offline mode
+
+Write the stack against your local aws environment emulated with [localstack](https://github.com/localstack/localstack) by setting the endpoint for all the sdk services to `http://localhost:4566`. By default, offline mode is disabled but can be enabled by using `--offline` argument.
+
 #### `cdk destroy`
 Deletes a stack from it's environment. This will cause the resources in the stack to be destroyed (unless they were
 configured with a `DeletionPolicy` of `Retain`). During the stack destruction, the command will output progress
@@ -293,6 +297,10 @@ $ cdk bootstrap --show-template > bootstrap-template.yaml
 # Tell CDK to use the customized template
 $ cdk bootstrap --template bootstrap-template.yaml
 ```
+
+#### Offline mode
+
+Deploys a `CDKToolkit` against your local aws environment emulated with [localstack](https://github.com/localstack/localstack) by setting the endpoint for all the sdk services to `http://localhost:4566`. By default, offline mode is disabled but can be enabled by using `--offline` argument.
 
 #### `cdk doctor`
 Inspect the current command-line environment and configurations, and collect information that can be useful for

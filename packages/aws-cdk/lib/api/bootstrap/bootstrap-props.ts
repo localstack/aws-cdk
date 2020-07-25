@@ -39,6 +39,13 @@ export interface BootstrapEnvironmentOptions {
    * @default true
    */
   readonly terminationProtection?: boolean;
+
+  /**
+   * Whether or not to enable offline support.
+   *
+   * @default false
+   */
+  readonly offline?: boolean;
 }
 
 /**
