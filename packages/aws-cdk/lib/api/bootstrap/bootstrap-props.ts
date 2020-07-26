@@ -86,9 +86,9 @@ export interface BootstrappingParameters {
   readonly terminationProtection?: boolean;
 
   /**
-   * Whether or not to enable offline support.
+   * Whether or not to enable offline support (true by default).
    *
-   * @default false
+   * @default true
    */
   readonly offline?: boolean;
 }

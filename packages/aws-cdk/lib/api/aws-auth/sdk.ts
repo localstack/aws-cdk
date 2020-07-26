@@ -94,7 +94,8 @@ export class SDK implements ISDK {
 
   public async currentAccount(): Promise<Account> {
     return cached(this, CURRENT_ACCOUNT_KEY, () => SDK.accountCache.fetch(this.credentials.accessKeyId, async () => {
-      const { endpoint } = this.config;
+      const config: any = this.config;
+      const { endpoint } = config;
       if (endpoint) {
         // offline mode is set, generate dummy accountId and partition;
         debug('Looking up default account for offline');
