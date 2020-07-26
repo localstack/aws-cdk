@@ -83,6 +83,8 @@ export interface SdkHttpOptions {
 const CACHED_ACCOUNT = Symbol('cached_account');
 const CACHED_DEFAULT_CREDENTIALS = Symbol('cached_default_credentials');
 
+const LOCALHOST_ENDPOINT = 'http://localhost:4566';
+
 /**
  * Creates instances of the AWS SDK appropriate for a given account/region
  *
@@ -102,9 +104,10 @@ export class SdkProvider {
     const sdkOptions = parseHttpOptions(options.httpOptions ?? {});
 
     if (options.offline) {
-      sdkOptions.endpoint = 'http://localhost:4566';
+      const sdkOptions1: any = sdkOptions;
+      sdkOptions1.endpoint = LOCALHOST_ENDPOINT;
       sdkOptions.s3ForcePathStyle = true;
-      debug('Using endpoint: %s', sdkOptions.endpoint);
+      debug('Using endpoint: %s', sdkOptions1.endpoint);
     }
     const chain = await AwsCliCompatible.credentialChain({
       profile: options.profile,

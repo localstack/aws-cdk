@@ -1,11 +1,11 @@
 {
-  "name": "aws-cdk",
-  "description": "CDK Toolkit, the command line tool for CDK apps",
-  "version": "0.0.0",
+  "name": "aws-cdk-local",
+  "description": "CDK Toolkit for use with LocalStack",
+  "version": "1.19.0-dev",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "cdk": "bin/cdk"
+    "cdklocal": "bin/cdklocal"
   },
   "scripts": {
     "build": "cdk-build",
