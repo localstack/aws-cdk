@@ -101,12 +101,22 @@ export class SdkProvider {
       const sdkOptions1: any = sdkOptions;
       sdkOptions1.endpoint = LOCALHOST_ENDPOINT;
       sdkOptions.s3ForcePathStyle = true;
-      debug('Using endpoint: %s', sdkOptions1.endpoint);
+      debug('Using API endpoint: %s', sdkOptions1.endpoint);
     }
 
     const chain = await AwsCliCompatible.credentialChain(options.profile, options.ec2creds, options.containerCreds, sdkOptions.httpOptions);
-    const region = await AwsCliCompatible.region(options.profile);
 
+    if (options.offline) {
+      try {
+        await chain.resolvePromise();
+      } catch (error) {
+        // if no credentials can be found, then use a set of dummy credentials for local testing
+        const providers1: any = chain.providers;
+        providers1.push(new AWS.Credentials('test', 'test'));
+      }
+    }
+
+    const region = await AwsCliCompatible.region(options.profile);
     return new SdkProvider(chain, region, sdkOptions);
   }
 
