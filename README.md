@@ -14,7 +14,7 @@ $ cdklocal --version
 
 ## Offline/Local Mode
 
-This modified version of CDK creates the stack against your local aws environment emulated with LocalStack by setting the endpoint for all the SDK services to `http://localhost:4566`. By default, offline mode is enabled but can be enabled by using `--offline=false` argument.
+This modified version of CDK creates the stack against your local aws environment emulated with LocalStack by setting the endpoint for all the SDK services to `http://localhost:4566`. By default, offline mode is enabled but can be disabled by using `--offline=false` argument.
 
 ## Deploying a Sample App
 
