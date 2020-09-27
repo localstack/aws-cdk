@@ -130,7 +130,6 @@ export class SdkProvider {
       }
     }
 
-    const region = await AwsCliCompatible.region(options.profile);
     return new SdkProvider(chain, region, sdkOptions);
   }
 

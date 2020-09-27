@@ -74,7 +74,7 @@ export function legacyBootstrapTemplate(params: BootstrappingParameters): any {
       },
       [BUCKET_DOMAIN_NAME_OUTPUT]: {
         Description: 'The domain name of the S3 bucket owned by the CDK toolkit stack',
-        Value: params.offline ? {'Fn::Sub': 'https://${StagingBucket}.s3-${AWS::Region}.{AWS::URLSuffix}' } : { 'Fn::GetAtt': ['StagingBucket', 'RegionalDomainName'] },
+        Value: params.offline ? { 'Fn::Sub': 'https://${StagingBucket}.s3-${AWS::Region}.{AWS::URLSuffix}' } : { 'Fn::GetAtt': ['StagingBucket', 'RegionalDomainName'] },
       },
     },
   };

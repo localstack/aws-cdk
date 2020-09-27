@@ -40,12 +40,6 @@ export interface BootstrapEnvironmentOptions {
    */
   readonly terminationProtection?: boolean;
 
-  /**
-   * Whether or not to enable offline support.
-   *
-   * @default false
-   */
-  readonly offline?: boolean;
 }
 
 /**
@@ -106,4 +100,10 @@ export interface BootstrappingParameters {
    */
   readonly publicAccessBlockConfiguration?: boolean;
 
+  /**
+   * Whether or not to enable offline support.
+   *
+   * @default false
+   */
+  readonly offline?: boolean;
 }

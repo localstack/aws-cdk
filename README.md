@@ -9,12 +9,12 @@ The `cdklocal` command line is published as an [npm library](https://www.npmjs.c
 $ npm install aws-cdk-local
 ...
 $ cdklocal --version
-1.54.0
+1.64.1
 ```
 
 ## Offline/Local Mode
 
-This modified version of CDK creates the stack against your local aws environment emulated with LocalStack by setting the endpoint for all the SDK services to `http://localhost:4566`. By default, offline mode is enabled but can be enabled by using `--offline=false` argument.
+This modified version of CDK creates the stack against your local aws environment emulated with LocalStack by setting the endpoint for all the SDK services to `http://localhost:4566`. By default, offline mode is enabled but can be disabled by using `--offline=false` argument.
 
 ## Deploying a Sample App
 

@@ -64,7 +64,7 @@ export class BootstrapStack {
   public async update(
     template: any,
     parameters: Record<string, string | undefined>,
-    options: Omit<BootstrapEnvironmentOptions, 'parameters'>,
+    options: BootstrapEnvironmentOptions,
   ): Promise<DeployStackResult> {
 
     const newVersion = bootstrapVersionFromTemplate(template);
@@ -82,7 +82,7 @@ export class BootstrapStack {
       environment: cxapi.EnvironmentUtils.format(this.resolvedEnvironment.account, this.resolvedEnvironment.region),
       properties: {
         templateFile,
-        terminationProtection: options.parameters?.offline ? undefined : (options.parameters?.terminationProtection ?? false),
+        terminationProtection: options.parameters?.offline ? undefined : (options.terminationProtection ?? false),
       },
     });
 
