@@ -96,10 +96,10 @@ export class SDK implements ISDK {
     return cached(this, CURRENT_ACCOUNT_KEY, () => SDK.accountCache.fetch(this.credentials.accessKeyId, async () => {
       const config: any = this.config;
       const { endpoint } = config;
-      if (endpoint) {
+      if (endpoint && process.env.AWS_ACCOUNT_ID) {
         // offline mode is set, generate dummy accountId and partition;
         debug('Looking up default account for offline');
-        return { accountId: '0000000000', partition: 'aws' };
+        return { accountId: process.env.AWS_ACCOUNT_ID, partition: 'aws' };
       }
 
       // if we don't have one, resolve from STS and store in cache.
