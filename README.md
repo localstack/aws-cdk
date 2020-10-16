@@ -1,3 +1,5 @@
+# ⚠️ !! DEPRECATED !! - Please use this repo instead: https://github.com/localstack/aws-cdk-local ⚠️ 
+
 # AWS Cloud Development Kit (CDK) for LocalStack
 
 This is a fork of the [AWS CDK](https://github.com/aws/aws-cdk) library which provides simple configurations/extensions to run CDK scripts against local APIs provided by [LocalStack](https://github.com/localstack/localstack).
